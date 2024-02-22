@@ -1,0 +1,30 @@
+// loader function need to return whatever data it wants to provide to the page
+//step2 connect loader function the the route
+// step3:use that data inside the component using useLoaderData custom hook
+
+export async function loader() {
+const menu = await getMenu();
+return menu;
+}
+
+// this data loader can be placed anywhere in our code base but convetntion seems to place the loader
+
+//for the data of a certain page inside the file of that page
+
+export default Menu;
+
+// nice thing about this is that react router will start fetching the data at the same time as it starts rendering the correct route
+
+//but the previus approach we used using useEffect was a fetch on render approach,so basically the component is rendered first and after the component
+
+//is rendered we would start to fetch data,so that would then create data loading waterfalls
+
+<!-- Use NAviagtion -->
+
+useNAviagation wll be able to see wheter the application is currently idle ,loading or submitting
+
+and this info is actually for the entire app,not just for one page,but really here for the entire router
+
+so if one of these pages is loading then navigation state will become laoding no matter
+
+which of these oages is actually being loaded

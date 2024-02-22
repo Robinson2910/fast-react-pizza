@@ -1,0 +1,88 @@
+1. Break the desired ui into components
+
+2. Build a static version (no state yet)
+
+3. Think about state management + data flow
+
+the above four steps works well for apps with one page and a few features
+
+in real-world-apps,we need to adapt this process
+
+1. gather application requirements and features
+
+   .
+
+2. Divide the application into pages
+   . Think about the overall and page level ui
+   . break the desired ui into components
+   . Design and build a static version (no state yet)
+
+3. divide the application into feature categories
+   .Think about state management + data flow
+
+4. Decide on what libraries to use (technology decisions)
+
+Step1:
+Project requirements from the business
+
+. very simple app,where users can order one or more pizzas from a menu
+
+. Requires no user accounts and no login:users just input their names before using the app
+
+. THe pizza menu can change,so it should be loaded from an api
+
+. Users can add multpiple pizzas to a cart before ordering
+
+.Ordering requires just the name ,phone number and adress
+
+. if possible gps locatipn should also be provided ,to make delivery easier
+
+. User's can mark their order as 'priority' for an additional 20% of the cart price
+
+-orders are made by sending a POST request with order data(user data + selected pizzas ) to the API
+
+-payments are made on delivery ,so no payment processing is neccessary in app
+
+- Each order will get a unique ID that should be displayed ,so the user can look up their order based on this id
+
+. Users should be able to mark their order as 'priority' order even after it has been placed
+
+Step2 + Step3
+
+Fetaure categories
+
+1.USer 2. Menu
+3.cart
+4.order
+
+necessary pages
+
+1. Home /
+   2.Pizza menu /menu
+   3.Cart / cart
+   4.placing a new order (/order/new) 5) looking up an order (/order/:orderID)
+
+<!-- Fetaure categories
+
+1.USer 2. Menu
+3.cart
+4.order -->
+
+Now many times these feature categories actually map really nice to different state slices or state domains
+
+1)user - gloal ui state (no accounts,so stays in app)
+2)Menu - global remote state (menu is fetched from an api)
+3)Cart - Global ui state(no api,jus stored in app)
+4)Order - Global remotes state (fetched and submitted to APi)
+
+Decide on what libraries to use
+
+Routin : React Router
+
+Styling : tailwindcss
+
+Remote state management - React Router - since version 6.4 REact router is now able to fetch data right inside
+of React Router and so this is something that is really worth exploring ,because this allows us to
+implement so called rend as fetch approach ,instead of fetch on render,this is not really state management ,because it doesnt persist state
+
+ui state management-redux

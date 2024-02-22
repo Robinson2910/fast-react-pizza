@@ -1,0 +1,9 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "react/prop-types": "warn",
+    "no-unused-vars": "warn",
+    "react/no-unescaped-entities": "warn",
+    "react/prop-types": "off"
+  }
+}

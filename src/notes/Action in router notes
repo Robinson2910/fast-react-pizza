@@ -1,0 +1,63 @@
+Certainly! In the provided code, the `action` property is set for a specific route:
+
+```jsx
+{
+  path: "/order/new",
+  element: <CreateOrder />,
+  action: createOrderAction,
+}
+```
+
+This configuration is telling React Router that when there is a new form submission on the route specified by the `path` property ("/order/new"), the `createOrderAction` function should be called. Let's break down how this works:
+
+1. **Route Configuration:**
+   ```jsx
+   path: "/order/new",
+   element: <CreateOrder />,
+   action: createOrderAction,
+   ```
+   - `path: "/order/new"`: This specifies the URL path for the route. In this case, it's "/order/new."
+   - `element: <CreateOrder />`: This defines the React component that should be rendered when the route is matched. In this case, it's the `CreateOrder` component.
+
+   - `action: createOrderAction`: This is the key part for handling form submissions. It specifies the action function (`createOrderAction`) that should be called when there is a new form submission on this route.
+
+2. **Form Submission in `CreateOrder` Component:**
+   ```jsx
+   // Inside the CreateOrder component
+   <Form method="POST">
+     {/* ... form fields ... */}
+     <button>Order now</button>
+   </Form>
+   ```
+   As explained earlier, when the form inside the `CreateOrder` component is submitted, it triggers the default form submission behavior, and React Router intercepts this event due to the specified route.
+
+3. **`createOrderAction` Function:**
+   ```jsx
+   export async function createOrderAction({ request }) {
+     const formData = await request.formData();
+     console.log(formData);
+     // Perform actions with form data, e.g., send it to a server
+     // ...
+
+     // Return something if needed
+     return null;
+   }
+   ```
+   The `createOrderAction` function is the action specified in the route configuration. It takes a `request` object as an argument, extracts the form data, and performs actions based on that data.
+
+4. **Handling Form Data in `createOrderAction`:**
+   ```jsx
+   const formData = await request.formData();
+   console.log(formData);
+   // Perform actions with form data, e.g., send it to a server
+   // ...
+   ```
+   Inside `createOrderAction`, the form data is extracted from the `request` object, and you can perform any necessary actions with that data. For example, you might want to send the form data to a server to create a new order.
+
+5. **Return Statement in `createOrderAction`:**
+   ```jsx
+   return null;
+   ```
+   The `createOrderAction` function returns `null`. In React Router, the action function is expected to return a promise or `null`. If a promise is returned, the navigation will wait for the promise to resolve before completing.
+
+In summary, the `action` property in the route configuration plays a crucial role in specifying the action function (`createOrderAction`) that should be called when there is a new form submission on the "/order/new" route. This allows you to handle the form submission and perform custom actions based on the submitted data.
